@@ -15,6 +15,7 @@ from tools import (
     generate_dockerfile,
     diagnose_error,
     get_liara_app_status,
+    validate_cli_command,
     SUPPORTED_PLATFORMS,
 )
 
@@ -51,6 +52,7 @@ SYSTEM_PROMPT = """تو دستیار ارشد هوشمند پلتفرم ابری
    - `generate_dockerfile`: ساخت Dockerfile
    - `diagnose_error`: تحلیل لاگ خطا
    - `get_app_status`: بررسی وضعیت برنامه در لیارا
+   - `validate_cli_command`: اعتبارسنجی دستور Liara CLI قبل از اجرا
 6. پاسخ را ساختاریافته و خوانا با هدینگ و لیست بنویس.
 7. اگر کاربر سلام کرد یا سوال عمومی پرسید، خودت را معرفی کن و قابلیت‌هایت را لیست کن.
 
@@ -141,6 +143,20 @@ TOOLS = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "validate_cli_command",
+            "description": "اعتبارسنجی یک دستور Liara CLI (مثل liara deploy --app=...) پیش از اجرا؛ زیردستور، فلگ‌های الزامی، نام برنامه و پورت را بررسی می‌کند",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "command": {"type": "string", "description": "دستور کامل CLI، مثلاً 'liara deploy --app=my-app --port=3000'"},
+                },
+                "required": ["command"],
+            },
+        },
+    },
 ]
 
 
@@ -177,6 +193,9 @@ async def execute_tool(name: str, args: dict, api_token: str = "") -> str:
                 app_name=args.get("app_name", "my-app"),
             )
 
+        elif name == "validate_cli_command":
+            return validate_cli_command(args.get("command", ""))
+
         else:
             return f"ابزار `{name}` شناخته نشد."
 
@@ -200,10 +219,8 @@ def _trim_history(messages: list[dict]):
     """Keep system + last MAX_HISTORY messages."""
     if len(messages) > MAX_HISTORY + 1:
         system = messages[0]
-        _sessions_key = [k for k, v in _sessions.items() if v is messages]
-        messages.clear()
-        messages.append(system)
-        messages.extend(messages[-(MAX_HISTORY):])
+        tail = messages[-MAX_HISTORY:]
+        messages[:] = [system] + tail
 
 
 # ─── SSE Streaming Generator ────────────────────────────────────────────────

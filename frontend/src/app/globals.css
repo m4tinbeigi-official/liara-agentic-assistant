@@ -2,7 +2,7 @@
 
 /* ─── Persian Font ───────────────────────────────────────────────────────── */
 .font-vazir {
-  font-family: "Vazirmatn", "Tahoma", "Arial", sans-serif;
+  font-family: var(--font-vazirmatn), "Vazirmatn", "Tahoma", "Arial", sans-serif;
 }
 
 /* ─── Scrollbar (dark theme) ─────────────────────────────────────────────── */
@@ -180,4 +180,79 @@
 }
 .pulse-glow {
   animation: pulseGlow 2s infinite;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: #7c3aed66;
+  color: #f1f5f9;
+}
+
+/* ─── Focus Ring ─────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #8b5cf680;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Background Ambience ────────────────────────────────────────────────── */
+.app-shell {
+  background-image:
+    radial-gradient(ellipse 60% 40% at 20% 0%, rgba(124, 58, 237, 0.08), transparent),
+    radial-gradient(ellipse 50% 35% at 100% 100%, rgba(139, 92, 246, 0.06), transparent);
+  background-repeat: no-repeat;
+}
+
+/* ─── Message Bubbles ────────────────────────────────────────────────────── */
+.user-message,
+.assistant-message {
+  transition: box-shadow 0.2s ease;
+}
+.assistant-message table {
+  display: block;
+  overflow-x: auto;
+}
+
+/* ─── Table (LTR-safe horizontal scroll for wide content) ───────────────── */
+.prose-chat table {
+  display: block;
+  overflow-x: auto;
+}
+
+/* ─── Timestamps (always LTR, muted) ─────────────────────────────────────── */
+.msg-timestamp {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Composer Textarea ──────────────────────────────────────────────────── */
+.composer-textarea::placeholder {
+  color: #64748b;
+}
+.composer-textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ─── Suggestion Cards ───────────────────────────────────────────────────── */
+.suggestion-card:active {
+  transform: scale(0.98);
+}
+
+/* ─── Error Bubble ───────────────────────────────────────────────────────── */
+.error-message {
+  border-color: #7f1d1d80 !important;
+  background: #450a0a33 !important;
+  color: #fca5a5 !important;
+}
+
+/* ─── Empty State Icon ───────────────────────────────────────────────────── */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-slow {
+  animation: floatSlow 4s ease-in-out infinite;
 }

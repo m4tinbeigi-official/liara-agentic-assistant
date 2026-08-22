@@ -24,6 +24,7 @@ const SUGGESTIONS = [
   { icon: "📊", label: "وضعیت برنامه", prompt: "وضعیت برنامه my-app را بررسی کن" },
   { icon: "🐳", label: "ساخت Dockerfile", prompt: "یک Dockerfile برای پروژه FastAPI بساز" },
   { icon: "❓", label: "راهنمای دیسک", prompt: "چطور دیسک پایدار در لیارا تنظیم کنم؟" },
+  { icon: "✅", label: "بررسی دستور CLI", prompt: "liara deploy --app=My_App --port=99999 معتبر است؟" },
 ];
 
 /* ─── Copy Button Component ──────────────────────────────────────────────── */
@@ -119,6 +120,7 @@ const TOOL_LABELS: Record<string, { icon: string; label: string }> = {
   generate_dockerfile: { icon: "🐳", label: "ساخت Dockerfile" },
   diagnose_error: { icon: "🩺", label: "تحلیل خطا" },
   get_app_status: { icon: "📊", label: "بررسی وضعیت" },
+  validate_cli_command: { icon: "✅", label: "اعتبارسنجی دستور CLI" },
 };
 
 function ToolBadge({ name }: { name: string }) {
@@ -239,7 +241,9 @@ export default function Home() {
         updated[updated.length - 1] = {
           id: assistantId,
           role: "assistant",
-          content: `خطا در ارتباط با سرور: ${err instanceof Error ? err.message : "unknown"}`,
+          content: `⚠️ متأسفانه ارتباط با سرور برقرار نشد. لطفاً دوباره تلاش کنید.\n\nجزئیات فنی: ${
+            err instanceof Error ? err.message : "خطای ناشناخته"
+          }`,
           tools: [],
         };
         return updated;
@@ -264,7 +268,7 @@ export default function Home() {
   /* ─── UI ─────────────────────────────────────────────────────────────── */
 
   return (
-    <main className="flex flex-col h-screen bg-slate-950 text-slate-200">
+    <main className="app-shell flex flex-col h-screen bg-slate-950 text-slate-200">
       {/* Header */}
       <header className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md shrink-0">
         <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-purple-700 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-violet-600/30 pulse-glow">
@@ -272,9 +276,9 @@ export default function Home() {
         </div>
         <div>
           <h1 className="font-semibold text-sm text-slate-100">Liara Agentic Copilot</h1>
-          <p className="text-[11px] text-slate-500">RAG · عیب‌یاب · کانفیگ‌ساز · دستیار استقرار</p>
+          <p className="text-[11px] text-slate-500">پاسخ فنی · عیب‌یابی خطا · ساخت کانفیگ و Dockerfile</p>
         </div>
-        <span className="mr-auto flex items-center gap-1.5 text-xs text-emerald-400">
+        <span className="ms-auto flex items-center gap-1.5 text-xs text-emerald-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           آنلاین
         </span>
@@ -284,15 +288,15 @@ export default function Home() {
       <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-6 space-y-4" role="log" aria-live="polite">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full gap-6 text-center animate-fade-in">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600/20 to-purple-700/20 border border-violet-500/30 flex items-center justify-center text-3xl">
+            <div className="float-slow w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600/20 to-purple-700/20 border border-violet-500/30 flex items-center justify-center text-3xl">
               ✦
             </div>
             <div>
               <h2 className="text-lg font-semibold text-slate-100">
-                سلام، کوپایلوت لیارا اینجاست
+                سلام! من کوپایلوت لیارا هستم
               </h2>
-              <p className="text-sm text-slate-500 mt-1">
-                لاگ خطا بفرست، کانفیگ بخواه یا سوال بپرس
+              <p className="text-sm text-slate-500 mt-1.5 max-w-sm mx-auto leading-relaxed">
+                پیام خطا رو بفرستید، یک کانفیگ بخواهید، یا هر سوالی درباره استقرار روی لیارا دارید بپرسید
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full max-w-2xl">
@@ -300,7 +304,7 @@ export default function Home() {
                 <button
                   key={s.prompt}
                   onClick={() => submit(s.prompt)}
-                  className="flex items-center gap-3 text-right p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 hover:border-violet-500/60 hover:bg-slate-700/60 transition-all duration-200 text-sm text-slate-300 hover:text-slate-100 group"
+                  className="suggestion-card flex items-center gap-3 text-right p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 hover:border-violet-500/60 hover:bg-slate-700/60 transition-all duration-200 text-sm text-slate-300 hover:text-slate-100 group"
                 >
                   <span className="text-lg group-hover:scale-110 transition-transform shrink-0">
                     {s.icon}
@@ -335,7 +339,7 @@ export default function Home() {
                   msg.role === "user"
                     ? "bg-gradient-to-br from-violet-600 to-purple-700 text-white rounded-br-sm shadow-lg shadow-violet-600/20"
                     : "bg-slate-800/80 text-slate-200 rounded-bl-sm border border-slate-700/60"
-                }`}
+                } ${msg.role === "assistant" && msg.content.startsWith("⚠️") ? "error-message" : ""}`}
               >
                 {msg.content ? (
                   msg.role === "assistant" ? (
@@ -354,7 +358,7 @@ export default function Home() {
                       <span className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-bounce [animation-delay:150ms]" />
                       <span className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-bounce [animation-delay:300ms]" />
                     </span>
-                    <span className="typing-status text-xs">در حال پاسخگویی…</span>
+                    <span className="typing-status text-xs">در حال نوشتن پاسخ…</span>
                   </span>
                 ) : null}
               </div>
@@ -374,10 +378,10 @@ export default function Home() {
             value={input}
             onChange={handleInput}
             onKeyDown={handleKeyDown}
-            placeholder="سوال، لاگ خطا یا نیاز استقرار... (Enter برای ارسال)"
+            placeholder="سؤال، پیام خطا یا نیاز استقرارتان را بنویسید…"
             disabled={isTyping}
             dir="auto"
-            className="flex-1 bg-transparent resize-none outline-none text-sm text-slate-200 placeholder:text-slate-500 max-h-36"
+            className="composer-textarea flex-1 bg-transparent resize-none outline-none text-sm text-slate-200 placeholder:text-slate-500 max-h-36"
           />
           <button
             type="submit"
@@ -390,7 +394,7 @@ export default function Home() {
           </button>
         </div>
         <p className="text-center text-[11px] text-slate-600 mt-2">
-          پاسخ‌ها بر پایه مستندات رسمی لیارا تولید می‌شوند
+          پاسخ‌ها بر پایه مستندات رسمی لیارا تولید می‌شوند و ممکن است نیاز به بازبینی داشته باشند
         </p>
       </form>
     </main>
