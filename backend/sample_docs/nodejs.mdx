@@ -1,0 +1,20 @@
+---
+title: استقرار Node.js در لیارا
+---
+
+# استقرار Node.js
+
+برای استقرار برنامه‌های Node.js روی پلتفرم ابری لیارا (Liara)، کافیست فایل `liara.json` را در ریشه پروژه قرار دهید.
+
+پورت پیش‌فرض برای Node.js در لیارا پورت `3000` است. شما باید پورت برنامه خود را از طریق متغیر محیطی `PORT` بخوانید:
+
+```javascript
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log('Listening...'));
+```
+
+سپس با استفاده از Liara CLI دستور زیر را اجرا کنید:
+
+```bash
+liara deploy --port=3000
+```
