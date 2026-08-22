@@ -1,6 +1,0 @@
-INFO:     Will watch for changes in these directories: ['C:\\Users\\amin\\Downloads\\liara-agentic-assistant-vibe-docs\\backend']
-INFO:     Uvicorn running on http://0.0.0.0:3000 (Press CTRL+C to quit)
-INFO:     Started reloader process [15992] using StatReload
-INFO:     Started server process [19780]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.

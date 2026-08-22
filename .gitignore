@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+
+# Static build artifacts
+backend/static/
+backend/out.log
+backend/err.log
+
+# Test artifacts
+tests/node_modules/
+tests/test-results/
+tests/playwright-report/
+tests/playwright/.cache/
