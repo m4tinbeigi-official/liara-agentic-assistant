@@ -1,0 +1,14 @@
+{
+  "app": "liara-agentic-copilot-pro",
+  "platform": "docker",
+  "port": 3000,
+  "build": {
+    "location": "iran"
+  },
+  "disks": [
+    {
+      "name": "vector-db-data",
+      "mountTo": "/app/qdrant_data"
+    }
+  ]
+}

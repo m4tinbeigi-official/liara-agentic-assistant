@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لیارا کوپایلوت | دستیار استقرار</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-mark">L</span><span>Liara <b>Copilot</b></span></a>
+      <div class="sidebar-label">فضای کاری</div>
+      <button class="nav active" data-prompt="راهنمای استقرار یک برنامه Node.js را بده"><span>✦</span> گفت‌وگوی جدید</button>
+      <button class="nav" data-prompt="برای اپلیکیشن Next.js یک liara.json بساز"><span>⌘</span> سازنده کانفیگ</button>
+      <button class="nav" data-prompt="Error: listen EADDRINUSE: address already in use :::3000"><span>◈</span> عیب‌یاب لاگ</button>
+      <div class="sidebar-label lower">منابع متصل</div>
+      <a class="resource" href="https://docs.liara.ir/" target="_blank" rel="noreferrer"><i></i> مستندات رسمی <small>متصل</small></a>
+      <a class="resource" href="https://github.com/liara-cloud/docs" target="_blank" rel="noreferrer"><i></i> مخزن مستندات</a>
+      <div class="sidebar-foot"><span class="status-dot"></span> عامل‌ها آماده‌اند<br><small>Hybrid retrieval فعال است</small></div>
+    </aside>
+    <section class="workspace">
+      <header><div><span class="eyebrow">LIARA / AGENTIC SUPPORT</span><h1>چطور می‌توانم کمک کنم؟</h1></div><div class="live"><span></span> Online</div></header>
+      <div class="conversation" id="conversation">
+        <article class="welcome"><div class="orb">✦</div><div><h2>سلام، من کوپایلوت لیارا هستم.</h2><p>مستندات را جست‌وجو می‌کنم، لاگ‌ها را تحلیل می‌کنم و کانفیگ آمادهٔ استقرار می‌سازم.</p></div></article>
+        <div class="suggestions">
+          <button data-prompt="برای استقرار یک برنامه Next.js روی لیارا چه کار کنم؟"><b>استقرار Node.js</b><span>راهنمای مرحله‌به‌مرحله</span></button>
+          <button data-prompt="Error: listen EADDRINUSE: address already in use :::3000"><b>تحلیل یک خطا</b><span>لاگ build یا runtime</span></button>
+          <button data-prompt="برای اپلیکیشن Django یک liara.json بساز"><b>ساخت کانفیگ</b><span>liara.json و CLI</span></button>
+        </div>
+      </div>
+      <form class="composer" id="composer"><textarea id="message" rows="1" placeholder="سوال، لاگ خطا یا نیاز استقرار خود را بنویسید..."></textarea><button aria-label="ارسال" type="submit">↑</button></form>
+      <p class="hint">پاسخ‌ها با ارجاع به مستندات رسمی لیارا تولید می‌شوند.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

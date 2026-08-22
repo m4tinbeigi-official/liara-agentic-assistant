@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "liara-docs-retriever": {
+      "command": "python",
+      "args": ["vector_store.py"],
+      "cwd": "backend",
+      "description": "ابزار MCP برای کوئری زدن سریع به ایندکس مستندات محلی لیارا"
+    }
+  }
+}

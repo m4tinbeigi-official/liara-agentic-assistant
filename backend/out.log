@@ -1,0 +1,27 @@
+[vector_store] Qdrant init failed: Storage folder C:\Users\amin\AppData\Local\Temp\qdrant_liara is already accessed by another instance of Qdrant client. If you require concurrent access, use Qdrant server instead. — search will use fallback only
+INFO:     127.0.0.1:63420 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63239 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60469 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58864 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59302 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59305 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59308 - "POST /api/v1/agent/chat HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:59311 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56127 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56129 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56131 - "POST /api/v1/agent/chat HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:56133 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53937 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53939 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53943 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53943 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53943 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53943 - "POST /api/v1/agent/chat HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:53943 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53943 - "POST /api/v1/agent/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57842 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49200 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64346 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50929 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54541 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58961 - "GET / HTTP/1.1" 404 Not Found

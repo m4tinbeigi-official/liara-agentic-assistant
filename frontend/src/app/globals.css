@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/* ─── Persian Font ───────────────────────────────────────────────────────── */
+.font-vazir {
+  font-family: "Vazirmatn", "Tahoma", "Arial", sans-serif;
+}
+
+/* ─── Scrollbar (dark theme) ─────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ─── Markdown Prose ─────────────────────────────────────────────────────── */
+.prose-chat {
+  line-height: 1.8;
+  word-break: break-word;
+}
+.prose-chat h1,
+.prose-chat h2,
+.prose-chat h3 {
+  font-weight: 700;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #e2e8f0;
+}
+.prose-chat h1 { font-size: 1.25rem; }
+.prose-chat h2 { font-size: 1.125rem; }
+.prose-chat h3 { font-size: 1rem; }
+
+.prose-chat p {
+  margin-bottom: 0.75em;
+}
+.prose-chat ul,
+.prose-chat ol {
+  padding-right: 1.5em;
+  margin-bottom: 0.75em;
+}
+.prose-chat li {
+  margin-bottom: 0.25em;
+}
+.prose-chat strong {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+/* ─── Inline Code ────────────────────────────────────────────────────────── */
+.prose-chat code:not(pre code) {
+  background: #1e293b;
+  color: #a5b4fc;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+  direction: ltr;
+  display: inline;
+}
+
+/* ─── Code Blocks ────────────────────────────────────────────────────────── */
+.code-block-wrapper {
+  position: relative;
+  margin: 0.75em 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #1e293b;
+  background: #0f172a;
+}
+.code-block-wrapper .code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: #1e293b;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+.code-block-wrapper pre {
+  margin: 0 !important;
+  padding: 1rem !important;
+  background: #0f172a !important;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+.code-block-wrapper pre code {
+  font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.6 !important;
+}
+
+/* ─── Copy Button ────────────────────────────────────────────────────────── */
+.copy-btn {
+  background: #334155;
+  border: none;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: all 0.15s ease;
+}
+.copy-btn:hover {
+  background: #475569;
+  color: #e2e8f0;
+}
+.copy-btn.copied {
+  background: #065f46;
+  color: #6ee7b7;
+}
+
+/* ─── Links ──────────────────────────────────────────────────────────────── */
+.prose-chat a {
+  color: #818cf8;
+  text-decoration: underline;
+  text-decoration-color: #818cf850;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+.prose-chat a:hover {
+  color: #a5b4fc;
+  text-decoration-color: #a5b4fc;
+}
+
+/* ─── Table ──────────────────────────────────────────────────────────────── */
+.prose-chat table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0;
+  font-size: 0.875rem;
+}
+.prose-chat th,
+.prose-chat td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #1e293b;
+  text-align: right;
+}
+.prose-chat th {
+  background: #1e293b;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+.animate-slide-right {
+  animation: slideInRight 0.3s ease-out;
+}
+.animate-slide-left {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+/* ─── Pulse Glow ─────────────────────────────────────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+  50% { box-shadow: 0 0 12px 4px rgba(124, 58, 237, 0.2); }
+}
+.pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
